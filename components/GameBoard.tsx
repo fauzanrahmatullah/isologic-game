@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
+// Offset Object
 const OFFSET_TOMBOL      = -10;
 const OFFSET_GATE        = -45;
 const OFFSET_PORTAL      = -50;
@@ -42,50 +43,50 @@ const LEVEL_DATA: Record<number, number[][]> = {
 
   3: [
     [13, 12, 12, 12, 12, 12, 12, 12, 16],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [ 7,  5,  5,  0,  0,  0,  5,  5,  8],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
+    [11, 17,  0,  0,  0,  0,  0,  0, 11],
+    [ 7,  5, 25,  5,  5,  20,  0,  0, 11],
+    [11,  0, 51,  0,  0, 19,  42,  5,  8],
+    [11,  0, 19, 20,  0,  0,  0,  0, 11],
+    [11,  0, 32,  6,  0, 21,  5,  5,  8],
+    [ 7,  5,  5, 18,  0, 19,  5,  5,  8],
+    [11,  0,  0,  0,  0,  0,  0, 31, 11],
     [15, 12, 12, 12, 12, 12, 12, 12, 14],
   ],
 
   4: [
-    [13, 12, 12, 12, 12, 12, 12, 12, 12, 16],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [15, 12, 12, 12, 12, 12, 12, 12, 12, 14],
+    [13, 12, 12, 12, 10, 12, 12, 12, 12, 16],
+    [11,  0,  0,  0,  6, 17,  0,  6, 31, 11],
+    [11, 32,  6,  0, 24,  5, 41, 23,  0, 11],
+    [11,  5, 18,  0,  6,  0,  0,  6,  0, 11],
+    [11,  0,  0,  0,  0,  0,  0,  6,  0, 11],
+    [11,  0, 21,  5, 20,  0,  0, 52,  0, 11],
+    [11,  0,  6,  2,  6,  0, 21, 18,  0, 11],
+    [11,  0,  0,  0,  6,  0,  6,  2,  0, 11],
+    [15, 12,  9, 12,  9, 12,  9, 12, 12, 14],
   ],
 
   5: [
     [13, 12, 12, 12, 12, 12, 12, 12, 16],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [15, 12, 12, 12, 12, 12, 12, 12, 14],
+    [11,  2,  0,  0,  0,  0,  0,  0, 11],
+    [11,  0,  0, 21, 41,  5, 20, 31, 11],
+    [11,  0, 21, 18,  0,  0, 24, 45,  8],
+    [11,  0,  6,  0,  0,  0, 52,  0, 11],
+    [11,  0,  6, 35, 21,  5, 23,  0, 11],
+    [11,  0, 19,  5, 18, 32,  6,  0, 11],
+    [11,  0,  0,  0,  0,  0,  6,  4, 11],
+    [15, 12, 12, 12, 12, 12,  9, 12, 14],
   ],
  
   6: [
-    [13, 12, 12, 12, 12, 12, 12, 12, 16],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0, 11],
+    [13, 12, 12, 12, 10, 12, 12, 12, 16],
+    [11,  0,  0,  0,  6,  0,  0,  0, 11],
+    [11,  0,  6,  0,  0,  0, 21,  42,  8],
+    [11,  0, 24,  5,  5, 25, 18,  0, 11],
+    [11, 33,  6,  0,  0, 53,  0,  0, 11],
+    [ 7,  5, 26,  5, 41,  23, 0, 21,  8],
+    [11, 32,  6, 17,  0,  6,  0,  6, 11],
+    [11,  0, 19,  5,  5, 18,  0, 19,  8],
+    [11,  0,  0,  0,  0,  0,  0, 31, 11],
     [15, 12, 12, 12, 12, 12, 12, 12, 14],
   ],
  
@@ -129,17 +130,17 @@ const LEVEL_DATA: Record<number, number[][]> = {
   ],
  
   10: [
-    [13, 12, 12, 10, 12, 12, 12, 12, 10, 12, 12, 16],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
-    [15, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 14],
+    [13, 12, 12, 10, 12, 12, 12, 10, 12, 12, 12, 16],
+    [11, 35,  0, 51,  0,  0,  0, 52,  0,  0, 32, 11],
+    [11,  5, 25, 22,  5,  5,  0,  6,  0,  0,  0, 11],
+    [11,  0, 53,  0,  0,  0,  0, 24,  5, 44,  5,  8],
+    [11, 31,  6,  0,  5,  5,  5, 23,  0,  0,  0, 11],
+    [ 7,  5, 23,  0,  0,  0,  0, 55,  0,  0, 17, 11],
+    [11, 34, 19,  5,  5, 20,  0, 19,  5,  5,  5,  8],
+    [11,  0,  0,  0,  0,  6,  0,  0,  0,  0,  0, 11],
+    [11,  0,  5, 20,  0, 19,  5,  0, 21,  5,  0, 11],
+    [11,  0,  0,  6,  0,  0,  0,  0,  6,  33,  0, 11],
+    [15, 12, 12,  9, 12, 12, 12, 12,  9, 12, 12, 14],
   ],
  
   11: [
@@ -249,7 +250,7 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
   const [pos, setPos] = useState({ x: 1, y: 1 });
   const [facing, setFacing] = useState("SE");
   
-  // LOGIKA MULTI-BUTTON
+  // MULTI-BUTTON Logic
   const [pressedButtons, setPressedButtons] = useState<string[]>([]);
   const totalButtons = currentMap.flat().filter(cell => cell === 2).length;
   const isAllButtonsPressed = totalButtons > 0 && pressedButtons.length === totalButtons;
@@ -271,12 +272,30 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
 
   // blokir langkah kalau nabrak penghalang
   const cekBisaJalan = (x: number, y: number) => {
-    if (y < 0 || y >= currentMap.length || x < 0 || x >= currentMap[0].length) return false;
-    const cell = currentMap[y][x];
+  if (y < 0 || y >= currentMap.length || x < 0 || x >= currentMap[0].length) return false;
+  const cell = currentMap[y][x];
 
-    if (cell >= 5 && cell <= 16) return false; 
-    if (cell === 3 && !isAllButtonsPressed) return false; 
-    return true;
+  // block semua dinding
+  if ((cell >= 5 && cell <= 16) || (cell >= 18 && cell <= 29)) return false; 
+
+  // 2. Gate Global (lama)
+  if ((cell === 1 || cell === 3) && !isAllButtonsPressed) return false; 
+
+  // 3. Gate FRONT / Lurus (41-49) : Membutuhkan Tombol 31-39 (cell - 10)
+  if (cell >= 41 && cell <= 49) {
+    const targetButtonId = cell - 10; 
+    const isOpen = pressedButtons.some(id => id.startsWith(`${targetButtonId}-`));
+    if (!isOpen) return false;
+  }
+
+  // 4. Gate SIDE / Miring (51-59) : Membutuhkan Tombol 31-39 (cell - 20)
+  if (cell >= 51 && cell <= 59) {
+    const targetButtonId = cell - 20; 
+    const isOpen = pressedButtons.some(id => id.startsWith(`${targetButtonId}-`));
+    if (!isOpen) return false;
+  }
+  
+  return true;
   };
 
   // Mekanism Keyboard
@@ -302,14 +321,16 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
       if (cekBisaJalan(x, y)) {
         const nextCell = currentMap[y][x];
         
-        if (nextCell === 2) {
-          const buttonId = `${x}-${y}`;
+        if (nextCell === 2 || (nextCell >= 31 && nextCell <= 39)) {
+          const buttonId = `${nextCell}-${x}-${y}`;
+          
           if (!pressedButtons.includes(buttonId)) {
             setPressedButtons(prev => [...prev, buttonId]);
           }
         }
 
-        if (nextCell === 4) {
+        // jika next adalah portal
+        if (nextCell === 4 || nextCell === 17) {
           alert("LEVEL SELESAI!");
           onWin();
           return;
@@ -323,7 +344,7 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [pos, facing, pressedButtons, isAllButtonsPressed, level, currentMap]);
 
-  // Kalkulasi Auto-Scale
+  // Auto-Scale
   const baris = currentMap.length;
   const kolom = currentMap[0].length;
   const mapPixelWidth = (kolom + baris) * (TILE_WIDTH / 2);
@@ -365,8 +386,6 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
             const isBorderLuar = y === 0 || x === 0 || y === currentMap.length - 1 || x === currentMap[0].length - 1;
             const isOuterWall = cell >= 11 && cell <= 16;
             const isInnerWall = cell >= 5 && cell <= 10;
-         // const isInnerT = cell
-         // const isInnerL = cell
 
             // Render lantai hanya jika bukan dinding luar, dan bukan dinding dalam yang nempel di border
             const butuhLantai = !isOuterWall && !(isBorderLuar && isInnerWall);
@@ -418,9 +437,9 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
                       cell === 22 ? "/assets/inner-T-E.png" :
                       cell === 23 ? "/assets/inner-T-N.png" :
                       cell === 24 ? "/assets/inner-T-S.png" :
-                      cell === 25 ? "/assets/inner-T-S.png" :
+                      cell === 25 ? "/assets/inner-T-W.png" :
                       cell === 26 ? "/assets/inner+.png" : 
-                      "/assets/wall-corner-right.png"
+                      "/assets/normal-tile.png"
                     }
                     alt="wall"
                     style={{
@@ -428,37 +447,48 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
                         cell === 5 || cell === 6 ? OFFSET_WALL_INNER : 
                         cell >= 7 && cell <= 10 ? OFFSET_WALL_T : 
                         cell >= 11 && cell <= 16 ? OFFSET_WALL_OUTER :
-                        OFFSET_WALL_INNER
+                        cell >= 18 && cell <= 29 ? OFFSET_WALL_INNER :
+                        0
                       }px)`,
-                      zIndex: 2 
+                      zIndex: 2
                     }}
                     className="absolute inset-0 w-full h-full object-contain"
                   />
                 )}
 
-                {/* Layer 4 = Button */}
-                {cell === 2 && (
+                {/* Layer 4 = Button (Global && ID 31-39) */}
+                {(cell === 2 || (cell >= 31 && cell <= 39)) && (
                   <img
-                    src={isThisButtonPressed ? "/assets/button-on.png" : "/assets/button-off.png"}
+                    src={pressedButtons.some(id => id.endsWith(`-${x}-${y}`)) ? "/assets/button-on.png" : "/assets/button-off.png"}
                     alt="button"
                     style={{ transform: `translateY(${OFFSET_TOMBOL}px)`, zIndex: 3 }}
                     className="absolute inset-0 w-full h-full object-contain"
                   />
                 )}
 
-                {/* Layer 5 = Gate */}
-                {cell === 3 && (
+                {/* Layer 5 = Gate Front (Global && ID 41-49) */}
+                {(cell === 3 || (cell >= 41 && cell <= 49)) && (
                   <img
-                    src={isAllButtonsPressed ? "/assets/gate-open-front.png" : "/assets/gate-close-front.png"}
-                    alt="gate"
+                    src={
+                      cell === 3 ? (isAllButtonsPressed ? "/assets/gate-open-front.png" : "/assets/gate-close-front.png") :
+                      // Untuk 41-49 - cari tombol dengan ID: cell dikurangi 10
+                      (pressedButtons.some(id => id.startsWith(`${cell - 10}-`)) ? "/assets/gate-open-front.png" : "/assets/gate-close-front.png")
+                    }
+                    alt="gate-front"
                     style={{ transform: `translateY(${OFFSET_GATE}px)`, zIndex: 4 }}
                     className="absolute inset-0 w-full h-full object-contain"
                   />
                 )}
-                {cell === 1 && (
+
+                {/* Layer 5.5 = Gate Side (Global && ID 51-59) */}
+                {(cell === 1 || (cell >= 51 && cell <= 59)) && (
                   <img
-                    src={isAllButtonsPressed ? "/assets/gate-open-side.png" : "/assets/gate-close-side.png"}
-                    alt="gate"
+                    src={
+                      cell === 1 ? (isAllButtonsPressed ? "/assets/gate-open-side.png" : "/assets/gate-close-side.png") :
+                      // Untuk 51-59 - cari tombol dengan ID: cell dikurangi 20
+                      (pressedButtons.some(id => id.startsWith(`${cell - 20}-`)) ? "/assets/gate-open-side.png" : "/assets/gate-close-side.png")
+                    }
+                    alt="gate-side"
                     style={{ transform: `translateY(${OFFSET_GATE}px)`, zIndex: 4 }}
                     className="absolute inset-0 w-full h-full object-contain"
                   />
