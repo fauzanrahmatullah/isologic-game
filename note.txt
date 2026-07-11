@@ -1,0 +1,40 @@
+normal-tile.png, broken-tile.png, portal-front.png, portal-side.png, character-front.png, character-back.png, character-right.png, character-left.png, wall-side.png, wall-top-bottom.png, wall-corner-top.png, wall-corner-bottom.png, wall-corner-right.png, wall-corner-left.png, button-on.png, button-off.png. gate-close-front.png, gate-open-front.png, gate-close-side.png, gate-open-side.png.
+
+masih ada yang kurang!!!
+berarti yang kurang apa aja??
+
+inner-wall-straight-se.png
+inner-wall-straight-sw.png
+1234-5678
+
+// 0  = Lantai (Jalan Kosong)
+// 2  = Tombol
+// 3  = Gerbang (Gate)
+// 4  = Portal
+// 17 = Portal
+// --- Dinding Dalam (Modular) ---
+// 5  = Straight SE
+// 6  = Straight SW
+// 7  = T-South
+// 8  = T-North (kanan)
+// 9  = T-East (Bawah)
+// 10 = T-West (atas)
+// --- Dinding Luar (Modular) ---
+// 11 = Wall Side   (garis vertikal kiri/kanan)
+// 12 = Wall Front  (garis horizontal atas/bawah)
+// 13 = Wall Corner Top
+// 14 = Wall Corner Bottom
+// 15 = Wall Corner Left
+// 16 = Wall Corner Right
+cell === 18 ? "/assets/inner-L-Bottom.png" :
+cell === 19 ? "/assets/inner-L-Left.png" :
+cell === 20 ? "/assets/inner-L-Right.png" :
+cell === 21 ? "/assets/inner-L-Top.png" :
+cell === 22 ? "/assets/inner-T-E.png" :
+cell === 23 ? "/assets/inner-T-N.png" :
+cell === 24 ? "/assets/inner-T-S.png" :
+cell === 25 ? "/assets/inner-T-S.png" :
+cell === 26 ? "/assets/inner+.png" : 
+
+
+tinggal 1 masalah kecil : portal nomer 17 ga bisa finish game (solved)
