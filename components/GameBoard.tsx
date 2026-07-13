@@ -278,6 +278,9 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
   if (y < 0 || y >= currentMap.length || x < 0 || x >= currentMap[0].length) return false;
   const cell = currentMap[y][x];
 
+  // add -1
+  if (cell === -1) return false;
+
   // block semua dinding
   if ((cell >= 5 && cell <= 16) || (cell >= 18 && cell <= 29)) return false; 
 
@@ -379,6 +382,10 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
         
         {currentMap.map((row, y) => {
           return row.map((cell, x) => {
+
+            // fungsi untuk -1
+            if 
+
             const xIso = (x - y) * (TILE_WIDTH / 2);
             const yIso = (x + y) * (TILE_HEIGHT / 2);
 
