@@ -49,7 +49,7 @@ export default function Home() {
             ISOLOGIC GAME
           </h1>
           <p className="text-xs text-slate-500 tracking-wider mb-4">
-            Isometric Puzzle Game - Solve the puzzles by moving blocks to their target positions.
+            Solve the puzzles by moving blocks to their target positions
           </p>
           <button
             onClick={() => setGameState("level-select")}
