@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import GameBoard from "../components/GameBoard";
+import ParticlesBackground from "../components/ParticlesBackground";
 
 export default function Home() {
   const [gameState, setGameState] = useState<string>("menu");
@@ -37,8 +38,10 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full h-screen bg-gradient-to-br from-[#020024] to-[#090979] flex flex-col items-center justify-center overflow-hidden select-none text-white font-mono">
-      
+    <main className="w-full h-screen bg-[#060608] flex flex-col items-center justify-center overflow-hidden select-none text-white font-mono relative">
+     <ParticlesBackground />
+
+      <div className="relative z-10 flex flex-col items-center"></div>
       {/* 1. Main Menu */}
       {gameState === "menu" && (
         <div className="flex flex-col items-center gap-6 animate-fade-in">
@@ -65,7 +68,7 @@ export default function Home() {
             <div className="w-12 h-[2px] bg-cyan-500"></div>
           </div>
           
-          {/* Grid Tombol Level dengan Pengunci */}
+          {/* Grid Level Button */}
           <div className="grid grid-cols-5 gap-4 w-full">
             {levels.map((lvl) => {
               const isUnlocked = lvl <= unlockedLevel;
@@ -80,8 +83,8 @@ export default function Home() {
                   }}
                   className={`aspect-square border flex items-center justify-center text-lg font-bold rounded-lg transition-all duration-200 ${
                     isUnlocked
-                      ? "border-slate-700 bg-slate-900/50 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-950/30 cursor-pointer"
-                      : "border-slate-800/50 bg-slate-950/40 text-slate-600 cursor-not-allowed opacity-50"
+                      ? "border-slate-700 bg-slate-900/100 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-950/100 cursor-pointer"
+                      : "border-slate-800/50 bg-slate-950/100 text-slate-600 cursor-not-allowed opacity-100"
                   }`}
                 >
                   {isUnlocked ? String(lvl).padStart(2, "0") : "🔒"}
@@ -99,24 +102,24 @@ export default function Home() {
         </div>
       )}
 
-      {/* 3. TAMPILAN SAAT GAMEPLAY AKTIF */}
-      {gameState === "game" && (
-        <div className="relative flex flex-col items-center gap-4">
-          {/* UI Info Atas */}
-          <div className="w-full flex justify-between items-center px-2 text-xs text-slate-400 tracking-widest">
-            <div>LEVEL : {String(selectedLevel).padStart(2, "0")}</div>
-            <button
-              onClick={() => setGameState("level-select")}
-              className="hover:text-cyan-400 border border-slate-800 px-3 py-1 rounded bg-slate-900/50 transition-all"
-            >
-              QUIT GAME
-            </button>
-          </div>
-
-          {/* Render Game Board */}
-          <GameBoard level={selectedLevel} onWin={handleWin} />
+        {/* 3. TAMPILAN SAAT GAMEPLAY AKTIF */}
+    {gameState === "game" && (
+      <div className="relative z-10 flex flex-col items-center justify-center w-full min-h-screen p-4">
+        {/* UI Info Atas */}
+        <div className="w-full max-w-[1290px] flex justify-between items-center px-2 mb-2 text-xs text-slate-400 tracking-widest">
+          <div>LEVEL : {String(selectedLevel).padStart(2, "0")}</div>
+          <button
+            onClick={() => setGameState("level-select")}
+            className="hover:text-cyan-400 border border-slate-800 px-3 py-1 rounded bg-slate-900/50 transition-all cursor-pointer"
+          >
+            QUIT GAME
+          </button>
         </div>
-      )}
+
+        {/* Render Game Board */}
+        <GameBoard level={selectedLevel} onWin={handleWin} />
+      </div>
+    )}
 
     </main>
   );
