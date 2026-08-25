@@ -37,7 +37,7 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full h-screen bg-gradient-to-br from-[#121824] to-[#0a0d14] flex flex-col items-center justify-center overflow-hidden select-none text-white font-mono">
+    <main className="w-full h-screen bg-gradient-to-br from-[#020024] to-[#090979] flex flex-col items-center justify-center overflow-hidden select-none text-white font-mono">
       
       {/* 1. Main Menu */}
       {gameState === "menu" && (
