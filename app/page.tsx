@@ -1,11 +1,40 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GameBoard from "../components/GameBoard";
 
 export default function Home() {
   const [gameState, setGameState] = useState<string>("menu");
   const [selectedLevel, setSelectedLevel] = useState<number>(1);
+  const [unlockedLevel, setUnlockedLevel] = useState<number>(1);
+
   const levels = Array.from({ length: 15 }, (_, i) => i + 1);
+
+  // Load unlocked level form localStorage when first time open page
+  useEffect(() => {
+    const savedProgress = localStorage.getItem("isologic-unlockedLevel");
+    if (savedProgress) {
+      setUnlockedLevel(parseInt(savedProgress, 10));
+    }
+  }, []);
+
+  // win level handler
+  const handleWin = () => {
+    const nextLvl = selectedLevel + 1;
+
+    // Update unlocked level if next level is greater than current unlocked level
+    if (nextLvl > unlockedLevel && nextLvl <= 15) {
+      setUnlockedLevel(nextLvl);
+      localStorage.setItem("isologic-unlockedLevel", nextLvl.toString());
+    }
+
+    // move to next level or show win message if all levels completed
+    if (nextLvl <= 15) {
+      setSelectedLevel(nextLvl);
+    } else {
+      alert("Yes, My Dear. YOU WIN ALL LEVELS!!!");
+      setGameState("level-select");
+    }
+  };
 
   return (
     <main className="w-full h-screen bg-gradient-to-br from-[#121824] to-[#0a0d14] flex flex-col items-center justify-center overflow-hidden select-none text-white font-mono">
@@ -36,20 +65,29 @@ export default function Home() {
             <div className="w-12 h-[2px] bg-cyan-500"></div>
           </div>
           
-          {/* Grid Tombol Level */}
+          {/* Grid Tombol Level dengan Pengunci */}
           <div className="grid grid-cols-5 gap-4 w-full">
-            {levels.map((lvl) => (
-              <button
-                key={lvl}
-                onClick={() => {
-                  setSelectedLevel(lvl);
-                  setGameState("game");
-                }}
-                className="aspect-square border border-slate-700 bg-slate-900/50 flex items-center justify-center text-lg font-bold rounded-lg hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-950/30 transition-all duration-200"
-              >
-                {String(lvl).padStart(2, "0")}
-              </button>
-            ))}
+            {levels.map((lvl) => {
+              const isUnlocked = lvl <= unlockedLevel;
+
+              return (
+                <button
+                  key={lvl}
+                  disabled={!isUnlocked}
+                  onClick={() => {
+                    setSelectedLevel(lvl);
+                    setGameState("game");
+                  }}
+                  className={`aspect-square border flex items-center justify-center text-lg font-bold rounded-lg transition-all duration-200 ${
+                    isUnlocked
+                      ? "border-slate-700 bg-slate-900/50 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-950/30 cursor-pointer"
+                      : "border-slate-800/50 bg-slate-950/40 text-slate-600 cursor-not-allowed opacity-50"
+                  }`}
+                >
+                  {isUnlocked ? String(lvl).padStart(2, "0") : "🔒"}
+                </button>
+              );
+            })}
           </div>
 
           <button
@@ -76,7 +114,7 @@ export default function Home() {
           </div>
 
           {/* Render Game Board */}
-          <GameBoard level={selectedLevel} onWin={() => setGameState("level-select")} />
+          <GameBoard level={selectedLevel} onWin={handleWin} />
         </div>
       )}
 
