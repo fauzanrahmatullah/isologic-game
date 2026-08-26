@@ -145,7 +145,8 @@ const LEVEL_DATA: Record<number, number[][]> = {
     [-1, -1, -1, -1, -1,  6,  0,  0,  0,  0,  0, 11],
     [-1, -1, -1, -1, -1, 15, 12, 12, 12, 12, 12, 14],
     ],
- 
+
+ /* SOON AJAH
   11: [
     [13, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16],
     [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
@@ -236,7 +237,7 @@ const LEVEL_DATA: Record<number, number[][]> = {
     [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
     [11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 11],
     [15, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 14],
-  ],
+  ], */
 };
 
 // Character Assets
@@ -358,20 +359,34 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
   const MAX_CONTAINER_WIDTH = 1100;
   const MAX_CONTAINER_HEIGHT = 500;
 
-  // Manual Scale Lvl
+  // Base Scale Calculation
   let scale = Math.min(
-    (MAX_CONTAINER_WIDTH - 100) / mapPixelWidth,
-    (MAX_CONTAINER_HEIGHT - 100) / mapPixelHeight
+    MAX_CONTAINER_WIDTH / mapPixelWidth,
+    MAX_CONTAINER_HEIGHT / mapPixelHeight
   );
 
-  if (scale > 0.65) scale = 0.6;
-  if (scale < 0.45) scale = 0.45;
+  // Ambil lebar viewport aman (kalo running di client)
+  const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1200;
+
+  if (windowWidth < 640) {
+    // HP potrait
+    if (scale > 0.55) scale = 0.55;
+    if (scale < 0.25) scale = 0.25; 
+  } else if (windowWidth < 1024) {
+    // HP landscape
+    if (scale > 0.75) scale = 0.75;
+    if (scale < 0.35) scale = 0.35;
+  } else {
+    // desktop mode
+    if (scale > 0.8) scale = 0.8;
+    if (scale < 0.5) scale = 0.5;
+  }
 
   const PADDING_ATAS = 50;
   const yCenterOffset = (mapPixelHeight / 2) - PADDING_ATAS;
 
   return (
-    <div className="relative w-full max-w-[1290px] h-[90vh] max-h-[600px] border border-white/1 bg-transparent rounded-xl flex items-center justify-center shadow-2xl overflow-hidden"> 
+    <div className="relative w-full max-w-[1290px] h-[90vh] min-h-[320px] max-h-[600px] border border-white/1 bg-transparent rounded-xl flex items-center justify-center shadow-2xl overflow-hidden"> 
       <div 
         className="absolute transition-transform duration-500 ease-in-out"
         style={{ 

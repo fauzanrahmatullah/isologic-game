@@ -8,7 +8,7 @@ export default function Home() {
   const [selectedLevel, setSelectedLevel] = useState<number>(1);
   const [unlockedLevel, setUnlockedLevel] = useState<number>(1);
 
-  const levels = Array.from({ length: 15 }, (_, i) => i + 1);
+  const levels = Array.from({ length: 10 }, (_, i) => i + 1);
 
   // Load unlocked level form localStorage when first time open page
   useEffect(() => {
@@ -23,13 +23,15 @@ export default function Home() {
     const nextLvl = selectedLevel + 1;
 
     // Update unlocked level if next level is greater than current unlocked level
-    if (nextLvl > unlockedLevel && nextLvl <= 15) {
+    //ganti kalau soon mau smpe lvl 15
+    if (nextLvl > unlockedLevel && nextLvl <= 10) {
       setUnlockedLevel(nextLvl);
       localStorage.setItem("isologic-unlockedLevel", nextLvl.toString());
     }
 
     // move to next level or show win message if all levels completed
-    if (nextLvl <= 15) {
+    //ganti kalo soon smpe lv 15
+    if (nextLvl <= 10) {
       setSelectedLevel(nextLvl);
     } else {
       alert("Yes, My Dear. YOU WIN ALL LEVELS!!!");
@@ -65,7 +67,6 @@ export default function Home() {
         <div className="flex flex-col items-center gap-8 max-w-xl w-full px-6">
           <div className="flex flex-col items-center gap-1">
             <h2 className="text-xl tracking-widest text-slate-400">SELECT LEVEL</h2>
-            <div className="w-12 h-[2px] bg-cyan-500"></div>
           </div>
           
           {/* Grid Level Button */}
@@ -118,42 +119,25 @@ export default function Home() {
 
         {/* Render Game Board */}
         <GameBoard level={selectedLevel} onWin={handleWin} />
+
         {/* D-Pad phone screen */}
-        <div className="flex flex-col items-center gap-2 mt-4 md:hidden select-none">
+        <div className="flex flex-col items-center gap-2 mt-2 select-none touch:flex pointer-coarse:flex md:pointer-fine:hidden">
           {/* ArrowUp */}
           <button
             onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }))}
-            className="w-14 h-14 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-xl flex items-center justify-center shadow-lg active:scale-95 transition-all"
+            className="w-12 h-12 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95 transition-all"
           >
             ▲
           </button>
           
-          <div className="flex gap-4">
-            {/* rrowLeft */}
-            <button
-              onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft" }))}
-              className="w-14 h-14 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-xl flex items-center justify-center shadow-lg active:scale-95 transition-all"
-            >
-              ◀
-            </button>
-            
-            {/* ArrowDown */}
-            <button
-              onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }))}
-              className="w-14 h-14 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-xl flex items-center justify-center shadow-lg active:scale-95 transition-all"
-            >
-              ▼
-            </button>
-            
-            {/* ArrowRight */}
-            <button
-              onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }))}
-              className="w-14 h-14 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-xl flex items-center justify-center shadow-lg active:scale-95 transition-all"
-            >
-              ▶
-            </button>
+          <div className="flex gap-3">
+            {/* Left, Down, Right */}
+            <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft" }))} className="w-12 h-12 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95 transition-all">◀</button>
+            <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }))} className="w-12 h-12 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95 transition-all">▼</button>
+            <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }))} className="w-12 h-12 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95 transition-all">▶</button>
           </div>
         </div>
+
         {/* Rotate Phone Message */}
         {/* Tapi malah eror kalo di HP posisi landscape */}
         {/*

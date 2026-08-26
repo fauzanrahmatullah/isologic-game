@@ -36,7 +36,7 @@ export default function ParticlesBackground() {
       constructor(width: number, height: number) {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = 1 + Math.random() * 2;
+        this.size = 2 + Math.random() * 4;
         this.speedX = (Math.random() - 0.3) * 0.5;
         this.speedY = (Math.random() - 0.3) * 0.5;
       }
