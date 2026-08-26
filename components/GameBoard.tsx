@@ -386,7 +386,7 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
   const yCenterOffset = (mapPixelHeight / 2) - PADDING_ATAS;
 
   return (
-    <div className="relative w-full max-w-[1290px] h-[90vh] sm:h-[80vh] min-h-[260px] min-h-[320px] max-h-[600px] border border-white/1 bg-transparent rounded-xl flex items-center justify-center shadow-2xl overflow-hidden"> 
+    <div className="relative w-full max-w-[1290px] h-[50vh] sm:h-[75vh] min-h-[260px] min-h-[320px] max-h-[600px] border border-white/10 bg-transparent rounded-xl flex items-center justify-center shadow-2xl overflow-hidden"> 
     
       <div 
         className="absolute transition-transform duration-500 ease-in-out"

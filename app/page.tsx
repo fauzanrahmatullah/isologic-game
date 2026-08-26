@@ -123,7 +123,7 @@ export default function Home() {
           <GameBoard level={selectedLevel} onWin={handleWin} />
         </div>
 
-        {/* D-Pad phone screen */}
+        {/* D-Pad phone screen  - md:pointer-fine:hidden- */}
         <div className="flex flex-col items-center gap-1 pb-2 shrink-0 select-none touch:flex pointer-coarse:flex md:pointer-fine:hidden">
             {/* Tombol Atas */}
             <button
