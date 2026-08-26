@@ -370,7 +370,7 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
 
   if (windowWidth < 640) {
     // HP potrait
-    if (scale > 0.3) scale = 0.3;
+    if (scale > 0.26) scale = 0.26;
     if (scale < 0.25) scale = 0.25; 
   } else if (windowWidth < 1024) {
     // HP landscape
