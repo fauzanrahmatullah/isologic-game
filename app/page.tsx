@@ -141,8 +141,7 @@ export default function Home() {
             </div>
           </div>
     
-      </div>
-      )}
+      
 
         {/* Rotate Phone Message */}
         {/* Tapi malah eror kalo di HP posisi landscape */}
