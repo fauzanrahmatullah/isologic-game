@@ -33,13 +33,13 @@ export default function ParticlesBackground() {
       speedX: number;
       speedY: number;
 
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+      constructor(width: number, height: number) {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
         this.size = 1 + Math.random() * 2;
         this.speedX = (Math.random() - 0.3) * 0.5;
         this.speedY = (Math.random() - 0.3) * 0.5;
-    }
+      }
 
       update() {
         this.x += this.speedX;
@@ -61,7 +61,7 @@ export default function ParticlesBackground() {
     }
 
     for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+      particles.push(new Particle(canvas.width, canvas.height));
     }
 
     // Loop Animasi
