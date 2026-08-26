@@ -118,6 +118,45 @@ export default function Home() {
 
         {/* Render Game Board */}
         <GameBoard level={selectedLevel} onWin={handleWin} />
+        {/* D-Pad phone screen */}
+        <div className="flex flex-col items-center gap-2 mt-4 md:hidden select-none">
+          {/* ArrowUp */}
+          <button
+            onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }))}
+            className="w-14 h-14 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-xl flex items-center justify-center shadow-lg active:scale-95 transition-all"
+          >
+            ▲
+          </button>
+          
+          <div className="flex gap-4">
+            {/* rrowLeft */}
+            <button
+              onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft" }))}
+              className="w-14 h-14 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-xl flex items-center justify-center shadow-lg active:scale-95 transition-all"
+            >
+              ◀
+            </button>
+            
+            {/* ArrowDown */}
+            <button
+              onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }))}
+              className="w-14 h-14 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-xl flex items-center justify-center shadow-lg active:scale-95 transition-all"
+            >
+              ▼
+            </button>
+            
+            {/* ArrowRight */}
+            <button
+              onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }))}
+              className="w-14 h-14 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-xl flex items-center justify-center shadow-lg active:scale-95 transition-all"
+            >
+              ▶
+            </button>
+          </div>
+        </div>
+        <div className="block sm:hidden text-center text-[10px] text-amber-400/80 bg-amber-950/30 border border-amber-500/20 px-3 py-1 rounded-full mb-2">
+          🔄 Rotate Your Phone For Better Experience
+        </div>
       </div>
     )}
 
