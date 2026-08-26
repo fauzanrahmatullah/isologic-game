@@ -62,7 +62,7 @@ const LEVEL_DATA: Record<number, number[][]> = {
     [11,  0, 21,  5, 20,  0,  0, 52,  0, 11],
     [11,  0,  6,  2,  6,  0, 21, 18,  0, 11],
     [11,  0,  0,  0,  6,  0,  6,  2,  0, 11],
-    [15, 12,  9, 12,  9, 12,  9, 12, 12, 14],
+    [15, 12, 12, 12,  9, 12,  9, 12, 12, 14],
   ],
 
   5: [
@@ -241,10 +241,10 @@ const LEVEL_DATA: Record<number, number[][]> = {
 
 // Character Assets
 const ROBOT_IMAGES: Record<string, string> = {
-  SW: "/assets/character-front.png",
-  NE: "/assets/character-back.png",
-  SE: "/assets/character-right.png",
-  NW: "/assets/character-left.png",
+  SW: "/assets/character-front.webp",
+  NE: "/assets/character-back.webp",
+  SE: "/assets/character-right.webp",
+  NW: "/assets/character-left.webp",
 };
 
 export default function GameBoard({ level, onWin }: GameBoardProps) {
@@ -416,7 +416,7 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
                 {/* Layer 1 = Base Floor */}
                 {butuhLantai && (
                   <img
-                    src="/assets/normal-tile.png"
+                    src="/assets/normal-tile.webp"
                     alt="tile"
                     className="absolute inset-0 w-full h-full object-contain"
                     style={{ zIndex: 1 }}
@@ -427,28 +427,28 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
                 {((cell >= 5 && cell <= 16) || cell >= 18) && (
                   <img
                     src={
-                      cell === 5 ? "/assets/inner-wall-straight-se.png" :
-                      cell === 6 ? "/assets/inner-wall-straight-sw.png" :
-                      cell === 7 ? "/assets/inner-wall-t-south.png" :
-                      cell === 8 ? "/assets/inner-wall-t-north.png" :
-                      cell === 9 ? "/assets/inner-wall-t-east.png" :
-                      cell === 10 ? "/assets/inner-wall-t-west.png" :
-                      cell === 11 ? "/assets/wall-side.png" :
-                      cell === 12 ? "/assets/wall-front.png" :
-                      cell === 13 ? "/assets/wall-corner-top.png" :
-                      cell === 14 ? "/assets/wall-corner-bottom.png" :
-                      cell === 15 ? "/assets/wall-corner-left.png" :
-                      cell === 16 ? "/assets/wall-corner-right.png" :
-                      cell === 18 ? "/assets/inner-L-Bottom.png" :
-                      cell === 19 ? "/assets/inner-L-Left.png" :
-                      cell === 20 ? "/assets/inner-L-Right.png" :
-                      cell === 21 ? "/assets/inner-L-Top.png" :
-                      cell === 22 ? "/assets/inner-T-E.png" :
-                      cell === 23 ? "/assets/inner-T-N.png" :
-                      cell === 24 ? "/assets/inner-T-S.png" :
-                      cell === 25 ? "/assets/inner-T-W.png" :
-                      cell === 26 ? "/assets/inner+.png" : 
-                      "/assets/broken-tile.png"
+                      cell === 5 ? "/assets/inner-wall-straight-se.webp" :
+                      cell === 6 ? "/assets/inner-wall-straight-sw.webp" :
+                      cell === 7 ? "/assets/inner-wall-t-south.webp" :
+                      cell === 8 ? "/assets/inner-wall-t-north.webp" :
+                      cell === 9 ? "/assets/inner-wall-t-east.webp" :
+                      cell === 10 ? "/assets/inner-wall-t-west.webp" :
+                      cell === 11 ? "/assets/wall-side.webp" :
+                      cell === 12 ? "/assets/wall-front.webp" :
+                      cell === 13 ? "/assets/wall-corner-top.webp" :
+                      cell === 14 ? "/assets/wall-corner-bottom.webp" :
+                      cell === 15 ? "/assets/wall-corner-left.webp" :
+                      cell === 16 ? "/assets/wall-corner-right.webp" :
+                      cell === 18 ? "/assets/inner-L-Bottom.webp" :
+                      cell === 19 ? "/assets/inner-L-Left.webp" :
+                      cell === 20 ? "/assets/inner-L-Right.webp" :
+                      cell === 21 ? "/assets/inner-L-Top.webp" :
+                      cell === 22 ? "/assets/inner-T-E.webp" :
+                      cell === 23 ? "/assets/inner-T-N.webp" :
+                      cell === 24 ? "/assets/inner-T-S.webp" :
+                      cell === 25 ? "/assets/inner-T-W.webp" :
+                      cell === 26 ? "/assets/inner+.webp" : 
+                      "/assets/broken-tile.webp"
                     }
                     alt="wall"
                     style={{
@@ -468,7 +468,7 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
                 {/* Layer 4 = Button (Global && ID 31-39) */}
                 {(cell === 2 || (cell >= 31 && cell <= 39)) && (
                   <img
-                    src={pressedButtons.some(id => id.endsWith(`-${x}-${y}`)) ? "/assets/button-on.png" : "/assets/button-off.png"}
+                    src={pressedButtons.some(id => id.endsWith(`-${x}-${y}`)) ? "/assets/button-off.webp" : "/assets/button-on.webp"}
                     alt="button"
                     style={{ transform: `translateY(${OFFSET_TOMBOL}px)`, zIndex: 3 }}
                     className="absolute inset-0 w-full h-full object-contain"
@@ -479,9 +479,9 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
                 {(cell === 3 || (cell >= 41 && cell <= 49)) && (
                   <img
                     src={
-                      cell === 3 ? (isAllButtonsPressed ? "/assets/gate-open-front.png" : "/assets/gate-close-front.png") :
+                      cell === 3 ? (isAllButtonsPressed ? "/assets/gate-open-front.webp" : "/assets/gate-close-front.webp") :
                       // Untuk 41-49 - cari tombol dengan ID: cell dikurangi 10
-                      (pressedButtons.some(id => id.startsWith(`${cell - 10}-`)) ? "/assets/gate-open-front.png" : "/assets/gate-close-front.png")
+                      (pressedButtons.some(id => id.startsWith(`${cell - 10}-`)) ? "/assets/gate-open-front.webp" : "/assets/gate-close-front.webp")
                     }
                     alt="gate-front"
                     style={{ transform: `translateY(${OFFSET_GATE}px)`, zIndex: 4 }}
@@ -493,9 +493,9 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
                 {(cell === 1 || (cell >= 51 && cell <= 59)) && (
                   <img
                     src={
-                      cell === 1 ? (isAllButtonsPressed ? "/assets/gate-open-side.png" : "/assets/gate-close-side.png") :
+                      cell === 1 ? (isAllButtonsPressed ? "/assets/gate-open-side.webp" : "/assets/gate-close-side.webp") :
                       // Untuk 51-59 - cari tombol dengan ID: cell dikurangi 20
-                      (pressedButtons.some(id => id.startsWith(`${cell - 20}-`)) ? "/assets/gate-open-side.png" : "/assets/gate-close-side.png")
+                      (pressedButtons.some(id => id.startsWith(`${cell - 20}-`)) ? "/assets/gate-open-side.webp" : "/assets/gate-close-side.webp")
                     }
                     alt="gate-side"
                     style={{ transform: `translateY(${OFFSET_GATE}px)`, zIndex: 4 }}
@@ -506,7 +506,7 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
                 {/* Layer 6 = Portal Manual */}
             {(cell === 4 || cell === 17) && (
               <img
-                src={cell === 4 ? "/assets/portal-front.png" : "/assets/portal-side.png"}
+                src={cell === 4 ? "/assets/portal-front.webp" : "/assets/portal-side.webp"}
                 alt="portal"
                 style={{ transform: `translateY(${OFFSET_PORTAL}px)`, zIndex: 5 }}
                 className="absolute inset-0 w-full h-full object-contain"
