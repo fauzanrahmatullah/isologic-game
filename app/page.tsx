@@ -105,9 +105,10 @@ export default function Home() {
 
         {/* 3. TAMPILAN SAAT GAMEPLAY AKTIF */}
     {gameState === "game" && (
-      <div className="relative z-10 flex flex-col items-center justify-center w-full min-h-screen p-4">
+      <div className="relative z-10 flex flex-col items-center justify-between w-full h-screen max-h-screen p-2 overflow-hidden">
+        
         {/* UI Info Atas */}
-        <div className="w-full max-w-[1290px] flex justify-between items-center px-2 mb-2 text-xs text-slate-400 tracking-widest">
+        <div className="w-full max-w-[1290px] flex justify-between items-center px-2 py-1 text-xs text-slate-400 tracking-widest shrink-0">
           <div>LEVEL : {String(selectedLevel).padStart(2, "0")}</div>
           <button
             onClick={() => setGameState("level-select")}
@@ -118,25 +119,30 @@ export default function Home() {
         </div>
 
         {/* Render Game Board */}
-        <GameBoard level={selectedLevel} onWin={handleWin} />
+        <div className="flex-1 flex items-center justify-center w-full min-h-0">
+          <GameBoard level={selectedLevel} onWin={handleWin} />
+        </div>
 
         {/* D-Pad phone screen */}
-        <div className="flex flex-col items-center gap-2 mt-2 select-none touch:flex pointer-coarse:flex md:pointer-fine:hidden">
-          {/* ArrowUp */}
-          <button
-            onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }))}
-            className="w-12 h-12 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95 transition-all"
-          >
-            ▲
-          </button>
-          
-          <div className="flex gap-3">
-            {/* Left, Down, Right */}
-            <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft" }))} className="w-12 h-12 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95 transition-all">◀</button>
-            <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }))} className="w-12 h-12 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95 transition-all">▼</button>
-            <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }))} className="w-12 h-12 bg-slate-800/80 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95 transition-all">▶</button>
+        <div className="flex flex-col items-center gap-1 pb-2 shrink-0 select-none touch:flex pointer-coarse:flex md:pointer-fine:hidden">
+            {/* Tombol Atas */}
+            <button
+              onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }))}
+              className="w-11 h-11 bg-slate-800/90 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-base flex items-center justify-center shadow-lg active:scale-95 transition-all"
+            >
+              ▲
+            </button>
+            
+            <div className="flex gap-2">
+              {/* Kiri, Bawah, Kanan */}
+              <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft" }))} className="w-11 h-11 bg-slate-800/90 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-base flex items-center justify-center shadow-lg active:scale-95 transition-all">◀</button>
+              <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }))} className="w-11 h-11 bg-slate-800/90 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-base flex items-center justify-center shadow-lg active:scale-95 transition-all">▼</button>
+              <button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }))} className="w-11 h-11 bg-slate-800/90 border border-cyan-500/30 text-cyan-400 active:bg-cyan-500 active:text-black rounded-xl font-bold text-base flex items-center justify-center shadow-lg active:scale-95 transition-all">▶</button>
+            </div>
           </div>
-        </div>
+    
+      </div>
+      )}
 
         {/* Rotate Phone Message */}
         {/* Tapi malah eror kalo di HP posisi landscape */}

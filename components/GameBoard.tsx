@@ -370,11 +370,11 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
 
   if (windowWidth < 640) {
     // HP potrait
-    if (scale > 0.35) scale = 0.35;
-    if (scale < 0.15) scale = 0.15; 
+    if (scale > 0.15) scale = 0.15;
+    if (scale < 0.1) scale = 0.1; 
   } else if (windowWidth < 1024) {
     // HP landscape
-    if (scale > 0.4) scale = 0.4;
+    if (scale > 0.3) scale = 0.3;
     if (scale < 0.2) scale = 0.2;
   } else {
     // desktop mode
@@ -386,7 +386,8 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
   const yCenterOffset = (mapPixelHeight / 2) - PADDING_ATAS;
 
   return (
-    <div className="relative w-full max-w-[1290px] h-[90vh] min-h-[320px] max-h-[600px] border border-white/1 bg-transparent rounded-xl flex items-center justify-center shadow-2xl overflow-hidden"> 
+    <div className="relative w-full max-w-[1290px] h-[90vh] sm:h-[80vh] min-h-[260px] min-h-[320px] max-h-[600px] border border-white/1 bg-transparent rounded-xl flex items-center justify-center shadow-2xl overflow-hidden"> 
+    
       <div 
         className="absolute transition-transform duration-500 ease-in-out"
         style={{ 
