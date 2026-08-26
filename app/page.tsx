@@ -154,9 +154,13 @@ export default function Home() {
             </button>
           </div>
         </div>
+        {/* Rotate Phone Message */}
+        {/* Tapi malah eror kalo di HP posisi landscape */}
+        {/*
         <div className="block sm:hidden text-center text-[10px] text-amber-400/80 bg-amber-950/30 border border-amber-500/20 px-3 py-1 rounded-full mb-2">
           🔄 Rotate Your Phone For Better Experience
         </div>
+        */}
       </div>
     )}
 

@@ -358,12 +358,14 @@ export default function GameBoard({ level, onWin }: GameBoardProps) {
   const MAX_CONTAINER_WIDTH = 1100;
   const MAX_CONTAINER_HEIGHT = 500;
 
+  // Manual Scale Lvl
   let scale = Math.min(
-    MAX_CONTAINER_WIDTH / mapPixelWidth,
-    MAX_CONTAINER_HEIGHT / mapPixelHeight
+    (MAX_CONTAINER_WIDTH - 100) / mapPixelWidth,
+    (MAX_CONTAINER_HEIGHT - 100) / mapPixelHeight
   );
 
-  if (scale > 1.2) scale = 1.2;
+  if (scale > 0.65) scale = 0.6;
+  if (scale < 0.45) scale = 0.45;
 
   const PADDING_ATAS = 50;
   const yCenterOffset = (mapPixelHeight / 2) - PADDING_ATAS;
